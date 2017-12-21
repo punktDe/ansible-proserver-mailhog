@@ -1,0 +1,10 @@
+---
+- name: Start MailHog
+  service:
+    name: mailhog
+    state: started
+
+- name: Restart MailHog
+  service:
+    name: mailhog
+    state: restarted

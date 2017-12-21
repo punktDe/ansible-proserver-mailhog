@@ -1,0 +1,8 @@
+---
+- name: Template configuration
+  template:
+    src: rc.conf.d/mailhog.j2
+    dest: "{{ item }}"
+  with_items:
+    - /usr/local/etc/rc.conf.d/mailhog
+  notify: Restart MailHog
