@@ -30,6 +30,8 @@ server {
     auth_basic_user_file {{ nginx.prefix.config }}/mailhog.htpasswd;
     {% endif %}
 
+    include {{ nginx.prefix.config }}/security_headers;
+
     location / {
         proxy_pass http://127.0.0.1:8025;
     }
@@ -40,6 +42,6 @@ server {
     ############################################################################
     ssl_certificate {{ dehydrated|cert_fullchain(mailhog.domain) }};
     ssl_certificate_key {{ dehydrated|cert_privkey(mailhog.domain) }};
-    include {{ nginx.prefix.config }}/https_params.conf;
+    include {{ nginx.prefix.config }}/https;
     {% endif %}
 }
