@@ -36,7 +36,7 @@ server {
         proxy_pass http://127.0.0.1:8025;
     }
 
-    {% if dehydrated|cert_exists(mailhog.domain) %}
+    {% if dehydrated|cert_exists(mailhog.domain) -%}
     ############################################################################
     # HTTPS
     ############################################################################
