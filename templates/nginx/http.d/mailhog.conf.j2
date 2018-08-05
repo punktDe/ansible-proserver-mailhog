@@ -1,4 +1,4 @@
-geo $mailhog_network_restrictions {
+geo $realip_remote_addr $mailhog_network_restrictions {
     default "Restricted Access";{{ '\n    ' }}
     {%- for interface in ansible_interfaces -%}
         {%- set interface = vars['ansible_%s' % interface] -%}
