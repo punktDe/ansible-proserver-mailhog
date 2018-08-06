@@ -42,6 +42,7 @@ server {
     ############################################################################
     ssl_certificate {{ dehydrated|cert_fullchain(mailhog.domain) }};
     ssl_certificate_key {{ dehydrated|cert_privkey(mailhog.domain) }};
+    ssl_trusted_certificate {{ dehydrated|cert_chain(mailhog.domain) }};
     include {{ nginx.prefix.config }}/https;
     {% endif %}
 }
