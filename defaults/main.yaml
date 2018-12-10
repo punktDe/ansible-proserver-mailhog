@@ -4,5 +4,8 @@ mailhog:
   smtp_port:
   api_port:
   ui_port:
-  basic_auth: {}
 privileged_subnets: {}
+oauth2_proxy:
+  config:
+    mailhog:
+      http_address: "[::1]:4184"
