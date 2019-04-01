@@ -1,5 +1,5 @@
 server {
-    {% if dehydrated|cert_exists(mailhog.domain) %}
+    {% if dehydrated|cert_exists(mailhog.domain) -%}
     listen 0.0.0.0:443 ssl http2;
     listen [::]:443 ssl http2;
     {% else %}
@@ -11,7 +11,10 @@ server {
 
     include {{ nginx.prefix.config }}/security_headers;
 
-    {% if oauth2_proxy.config.mailhog %}
+    {% if oauth2_proxy.config.mailhog -%}
+    ############################################################################
+    # OAuth2 Proxy
+    ############################################################################
     location /oauth2 {
         proxy_pass http://[::1]:{{ oauth2_proxy.config.mailhog.http_address.split(":")[-1] }};
         proxy_set_header Host $host;
@@ -30,8 +33,11 @@ server {
     }
     {% endif %}
 
+    ############################################################################
+    # Routing
+    ############################################################################
     location / {
-        {% if oauth2_proxy.config.mailhog %}
+        {% if oauth2_proxy.config.mailhog -%}
         auth_request /oauth2/auth;
         error_page 401 = /oauth2/sign_in;
         auth_request_set $auth_cookie $upstream_http_set_cookie;
