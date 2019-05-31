@@ -4,7 +4,6 @@ mailhog:
   smtp_port:
   api_port:
   ui_port:
-privileged_subnets: {}
 oauth2_proxy:
   config:
     mailhog:
