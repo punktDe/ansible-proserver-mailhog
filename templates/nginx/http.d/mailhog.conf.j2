@@ -25,7 +25,7 @@ server {
     ############################################################################
     # OAuth2 Proxy
     ############################################################################
-    location /oauth2 {
+    location /proserver/iap {
         proxy_pass http://[::1]:{{ oauth2_proxy.config.mailhog.http_address.split(":")[-1] }};
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
@@ -33,7 +33,7 @@ server {
         proxy_set_header X-Auth-Request-Redirect $request_uri;
     }
 
-    location = /oauth2/auth {
+    location = /proserver/iap/auth {
         proxy_pass http://[::1]:{{ oauth2_proxy.config.mailhog.http_address.split(":")[-1] }};
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
@@ -48,8 +48,8 @@ server {
     ############################################################################
     location / {
         {% if oauth2_proxy.config.mailhog -%}
-        auth_request /oauth2/auth;
-        error_page 401 = /oauth2/sign_in;
+        auth_request /proserver/iap/auth;
+        error_page 401 = /proserver/iap/sign_in;
         auth_request_set $auth_cookie $upstream_http_set_cookie;
         add_header Set-Cookie $auth_cookie;
         {% endif %}
