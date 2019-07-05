@@ -19,7 +19,7 @@ server {
 
     server_name {{ mailhog.domain }};
 
-    include {{ nginx.prefix.config }}/security_headers;
+    include {{ nginx.prefix.config }}/include/security_headers.conf;
 
     {% if oauth2_proxy.config.mailhog -%}
     ############################################################################
@@ -69,6 +69,6 @@ server {
     ssl_certificate {{ dehydrated|cert_fullchain(mailhog.domain) }};
     ssl_certificate_key {{ dehydrated|cert_privkey(mailhog.domain) }};
     ssl_trusted_certificate {{ dehydrated|cert_chain(mailhog.domain) }};
-    include {{ nginx.prefix.config }}/https;
+    include {{ nginx.prefix.config }}/include/https_params.conf;
     {% endif %}
 }
