@@ -1,5 +1,5 @@
 {% for option in ('bind_addr', 'smtp_port', 'api_port', 'ui_port') %}
 {% if mailhog[option] is not none %}
-mailhog_{{ option }}="{{ mailhog[option] }}"
+mailhog_{{ option }}={{ mailhog[option]|quote }}
 {% endif %}
 {% endfor %}
