@@ -1,4 +1,4 @@
 ---
 dependencies:
-  - { role: nginx }
-  - { role: oauth2_proxy }
+  - role: nginx
+  - role: oauth2_proxy
