@@ -11,4 +11,4 @@
   with_fileglob:
     - "{{ role_path }}/templates/nginx/*.j2"
     - "{{ role_path }}/templates/nginx/http.d/*.j2"
-  notify: Restart nginx
+  notify: Reload nginx
