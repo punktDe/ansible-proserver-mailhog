@@ -2,4 +2,4 @@
 dependencies:
   - role: nginx
   - role: oauth2_proxy
-    when: mailhog.oauth2.proxy
+    when: mailhog.oauth2_proxy
