@@ -1,4 +1,7 @@
 ---
 - import_tasks: config.yaml
 - import_tasks: service.yaml
+- import_tasks: apache.yaml
+  when: '"apache" in dehydrated.httpd_service.name'
 - import_tasks: nginx.yaml
+  when: '"nginx" in dehydrated.httpd_service.name'

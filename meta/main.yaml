@@ -1,5 +1,8 @@
 ---
 dependencies:
+  - role: apache
+    when: '"apache" in dehydrated.httpd_service.name'
   - role: nginx
+    when: '"nginx" in dehydrated.httpd_service.name'
   - role: oauth2_proxy
     when: mailhog.oauth2_proxy
