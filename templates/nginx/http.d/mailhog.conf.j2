@@ -23,7 +23,7 @@ server {
   server_name {{ mailhog.domain }};
 
   include {{ nginx.prefix.config }}/include/security_headers.conf;
-  {% if nginx.modsecurity.enabled is defined and nginx.modsecurity.enabled %}
+  {% if nginx.modsecurity is defined and nginx.modsecurity.enabled %}
   include {{ nginx.prefix.config }}/include/modsecurity.conf;
   {% endif %}
 
