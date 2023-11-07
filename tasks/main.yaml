@@ -1,4 +1,10 @@
 ---
 - import_tasks: config.yaml
+
 - import_tasks: service.yaml
+
+- import_tasks: apache.yaml
+  when: inventory_hostname in groups.apache
+
 - import_tasks: nginx.yaml
+  when: inventory_hostname in groups.nginx or not inventory_hostname in groups.apache

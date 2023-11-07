@@ -1,5 +1,9 @@
 ---
 dependencies:
+  - role: dehydrated
+  - role: apache
+    when: inventory_hostname in groups.apache
   - role: nginx
+    when: inventory_hostname in groups.nginx or not inventory_hostname in groups.apache
   - role: oauth2_proxy
     when: mailhog.oauth2_proxy

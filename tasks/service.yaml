@@ -6,4 +6,9 @@
     line: 'mailhog_enable="YES"'
   with_items:
     - /etc/rc.conf
-  notify: Start MailHog
+
+- name: Start MailHog
+  service:
+    name: mailhog
+    state: started
+  register: mailhog_service_result

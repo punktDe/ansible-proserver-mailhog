@@ -1,10 +1,4 @@
 ---
-- name: Start MailHog
-  service:
-    name: mailhog
-    state: started
-  register: mailhog_service_result
-
 - name: Restart MailHog
   service:
     name: mailhog
