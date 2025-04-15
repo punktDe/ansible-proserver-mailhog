@@ -1,5 +1,6 @@
 ---
 mailhog:
+  use_dehydrated:
   bind_addr: 127.0.0.1
   smtp_port:
   api_port:
