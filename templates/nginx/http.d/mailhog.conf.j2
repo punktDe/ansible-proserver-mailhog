@@ -43,7 +43,7 @@ server {
   listen [::1]:87 proxy_protocol;
   {%- endif %}
 
-  {% if mailhog.domain is defined and mailhog.domain | length > 0 %}
+  {% if mailhog.domain is defined and mailhog.domain != None %}
   server_name {{ mailhog.domain }};
   {% else %}
   server_name _;
@@ -73,7 +73,7 @@ server {
   listen [::1]:57 ssl http2 proxy_protocol;
   {%- endif %}
 
-  {% if mailhog.domain is defined and mailhog.domain | length > 0 %}
+  {% if mailhog.domain is defined and mailhog.domain != None %}
   server_name {{ mailhog.domain }};
   {% else %}
   server_name _;
