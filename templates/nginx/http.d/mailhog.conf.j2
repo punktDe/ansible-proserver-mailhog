@@ -43,7 +43,7 @@ server {
   listen [::1]:87 proxy_protocol;
   {%- endif %}
 
-  server_name {{ mailhog.domain }};
+  server_name {{ mailhog.domain | default("_") }};
   include {{ nginx.prefix.config }}/include/letsencrypt.conf;
   {% if mailhog.use_dehydrated %}
   location / {
@@ -68,7 +68,7 @@ server {
   listen [::1]:57 ssl http2 proxy_protocol;
   {%- endif %}
 
-  server_name {{ mailhog.domain }};
+  server_name {{ mailhog.domain | default("_") }};
 
   include {{ nginx.prefix.config }}/include/security_headers.conf;
 

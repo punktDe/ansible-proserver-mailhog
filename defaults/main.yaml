@@ -1,5 +1,6 @@
 ---
 mailhog:
+  domain:
   use_dehydrated: yes
   nginx:
     bind_addr:
