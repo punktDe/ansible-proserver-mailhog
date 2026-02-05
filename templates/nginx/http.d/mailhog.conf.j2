@@ -64,7 +64,7 @@ server {
 
 }
 
-{% if mailhog.use_dehydrated %}
+{% if mailhog.use_dehydrated and (dehydrated | cert_exists(mailhog.domain)) %}
 server {
   {% for addr in mailhog.nginx.bind_addr %}
   listen {{ addr }}:443 ssl http2;
@@ -87,11 +87,9 @@ server {
    {{ mailhog_proxy_pass() }}
   }
 
-  {% if dehydrated | cert_exists(mailhog.domain) -%}
   ssl_certificate {{ dehydrated|cert_fullchain(mailhog.domain) }};
   ssl_certificate_key {{ dehydrated|cert_privkey(mailhog.domain) }};
   ssl_trusted_certificate {{ dehydrated|cert_chain(mailhog.domain) }};
   include {{ nginx.prefix.config }}/include/https_params.conf;
-  {% endif %}
 }
 {% endif %}
