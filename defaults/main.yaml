@@ -4,6 +4,7 @@ mailhog:
   use_dehydrated: yes
   nginx:
     bind_addr:
+      - "0.0.0.0"
       - "[::1]"
   bind_addr: 127.0.0.1
   smtp_port: 1025
