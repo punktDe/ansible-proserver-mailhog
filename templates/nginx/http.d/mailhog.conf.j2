@@ -1,5 +1,5 @@
 {% macro mailhog_oauth2proxy() %}
-{% if mailhog.oauth2_proxy -%}
+{% if mailhog.oauth2_proxy is defined and mailhog.oauth2_proxy != None -%}
 location /proserver/iap {
   proxy_pass http://[::1]:{{ oauth2_proxy.config[mailhog.oauth2_proxy].http_address.split(":")[-1] }};
   proxy_set_header Host $host;
@@ -20,7 +20,7 @@ location = /proserver/iap/auth {
 {% endmacro %}
 
 {% macro mailhog_proxy_pass() %}
-  {% if mailhog.oauth2_proxy -%}
+  {% if mailhog.oauth2_proxy is defined and mailhog.oauth2_proxy != None -%}
   auth_request /proserver/iap/auth;
   error_page 401 = /proserver/iap/sign_in;
   auth_request_set $auth_cookie $upstream_http_set_cookie;

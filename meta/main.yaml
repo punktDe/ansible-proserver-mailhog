@@ -4,7 +4,7 @@ dependencies:
   - role: dehydrated
     when: mailhog.use_dehydrated
   - role: oauth2_proxy
-    when: mailhog.oauth2_proxy
+    when: (mailhog.oauth2_proxy is defined and mailhog.oauth2_proxy != None)
 
 galaxy_info:
   author: "punkt.de"
@@ -12,5 +12,5 @@ galaxy_info:
   role_name: mailhog
   description: "Mailhog role for Proserver"
   namespace: "punktde"
-  min_ansible_version: "2.15"
+  min_ansible_version: "2.19"
   platforms: []

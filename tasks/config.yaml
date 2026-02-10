@@ -1,8 +1,8 @@
 ---
-- name: Template configuration
-  template:
+- name: Template Mailhog configuration
+  ansible.builtin.template:
     src: rc.conf.d/mailhog.j2
-    dest: "{{ item }}"
-  with_items:
-    - /usr/local/etc/rc.conf.d/mailhog
+    dest: /usr/local/etc/rc.conf.d/mailhog
+    owner: "root"
+    mode: "0644"
   notify: Restart MailHog

@@ -1,14 +1,8 @@
 ---
 - name: Template nginx configuration
-  template:
-    src: "{{ item }}"
-    dest: "{{ render_path }}"
-  loop_control:
-    label: "{{ render_path }}"
-  vars:
-    template_dir: "{{ role_path }}/templates"
-    render_path: "{{ nginx.prefix.config }}/{{ item|strip_prefix(template_dir + '/nginx/')|strip_suffix('.j2') }}"
-  with_fileglob:
-    - "{{ role_path }}/templates/nginx/*.j2"
-    - "{{ role_path }}/templates/nginx/http.d/*.j2"
+  ansible.builtin.template:
+    src: "nginx/http.d/mailhog.conf.j2"
+    dest: "{{ nginx.prefix.config }}/http.d/mailhog.conf"
+    mode: "0644"
+    owner: "root"
   notify: Reload nginx
