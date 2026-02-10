@@ -37,7 +37,7 @@ Configure MailHog with optional nginx reverse proxy, TLS via dehydrated, and oau
 - dehydrated
   - **Condition**: `mailhog.use_dehydrated`
 - oauth2_proxy
-  - **Condition**: `mailhog.oauth2_proxy`
+  - **Condition**: `(mailhog.oauth2_proxy is defined and mailhog.oauth2_proxy != None)`
 
 ## Installation
 Add this role to the requirements.yml of your playbook as follows:
