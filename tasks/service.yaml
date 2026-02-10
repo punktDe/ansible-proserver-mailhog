@@ -1,9 +1,6 @@
 ---
 - name: Enable service
-  lineinfile:
-    path: "{{ item }}"
-    regexp: "^mailhog_enable="
-    line: 'mailhog_enable="YES"'
-  with_items:
-    - /etc/rc.conf
+  ansible.builtin.service:
+    name: mailhog
+    enabled: yes
   notify: Start MailHog

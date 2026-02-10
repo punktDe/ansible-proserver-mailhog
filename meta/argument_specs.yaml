@@ -1,0 +1,55 @@
+---
+argument_specs:
+  main:
+    short_description: Mailhog role for Proserver
+    description: >
+      Configure MailHog with optional nginx reverse proxy, TLS via dehydrated,
+      and oauth2_proxy for IAP.
+    options:
+      mailhog:
+        description: MailHog configuration.
+        type: dict
+        required: false
+        default: {}
+        options:
+          use_dehydrated:
+            description: Use dehydrated role for TLS certificates and HTTPS.
+            type: bool
+            default: true
+          bind_addr:
+            description: Address MailHog SMTP/API/UI bind to.
+            type: str
+            default: "127.0.0.1"
+          smtp_port:
+            description: SMTP port.
+            type: int
+            default: 1025
+          api_port:
+            description: API port. Omit or set to null to leave unset.
+            type: int
+            required: false
+          ui_port:
+            description: Web UI port.
+            type: int
+            default: 8025
+          domain:
+            description: Domain name for nginx server_name and TLS certificates.
+            type: str
+            required: false
+          nginx:
+            description: Nginx listener configuration.
+            type: dict
+            required: false
+            default: {}
+            options:
+              bind_addr:
+                description: Addresses nginx listens on (e.g. ["::1"]).
+                type: list
+                elements: str
+                default: ["::1"]
+          oauth2_proxy:
+            description: >
+              Key into oauth2_proxy.config to enable IAP for the MailHog UI.
+              When set, the dehydrated and oauth2_proxy role dependencies are used.
+            type: str
+            required: false

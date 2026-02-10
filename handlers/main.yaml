@@ -1,12 +1,12 @@
 ---
 - name: Start MailHog
-  service:
+  ansible.builtin.service:
     name: mailhog
     state: started
   register: mailhog_service_result
 
 - name: Restart MailHog
-  service:
+  ansible.builtin.service:
     name: mailhog
     state: restarted
   when: not (mailhog_service_result is defined and mailhog_service_result.changed)

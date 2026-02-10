@@ -1,4 +1,9 @@
 ---
-- import_tasks: config.yaml
-- import_tasks: service.yaml
-- import_tasks: nginx.yaml
+- name: Configure Mailhog
+  ansible.builtin.include_tasks: config.yaml
+
+- name: Enable Mailhog service
+  ansible.builtin.include_tasks: service.yaml
+
+- name: Configure Nginx for Mailhog
+  ansible.builtin.include_tasks: nginx.yaml
