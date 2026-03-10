@@ -1,4 +1,7 @@
 <!-- BEGIN_ANSIBLE_DOCS -->
+> [!WARNING]
+> This role is no longer maintained, please use [ansible-proserver-mailpit](https://github.com/punktDe/ansible-proserver-mailpit) instead.
+
 # ansible-proserver-mailhog
 
 Mailhog role for Proserver

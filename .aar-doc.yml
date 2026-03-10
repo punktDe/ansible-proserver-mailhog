@@ -3,6 +3,9 @@ output_file: README.md
 output_mode: replace
 output_template: |
   <!-- BEGIN_ANSIBLE_DOCS -->
+  > [!WARNING]
+  > This role is no longer maintained, please use [ansible-proserver-mailpit](https://github.com/punktDe/ansible-proserver-mailpit) instead.
+
   # {{ role }}
 
   {{ metadata.galaxy_info.description }}
